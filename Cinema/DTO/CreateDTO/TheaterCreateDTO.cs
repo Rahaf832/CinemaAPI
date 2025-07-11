@@ -1,4 +1,5 @@
-﻿namespace CinemaAPI.DTO.CreateDTO
+﻿
+namespace CinemaAPI.DTO.CreateDTO
 {
     public class TheaterCreateDTO
     {

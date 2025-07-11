@@ -16,9 +16,15 @@ namespace CinemaAPI.DTO
             CreateMap<Booking, BookingUpdate>().ReverseMap();
             CreateMap<Booking,BookingRead>().ReverseMap();
 
-            CreateMap<Movie,MovieCreateDTO>().ReverseMap();
-            CreateMap<Movie, MovieReadDTO>().ReverseMap();
-            CreateMap<Movie, MovieUpdateDTO>().ReverseMap();
+            CreateMap<MovieCreateDTO,Movie>()
+                .ForMember(dest=>dest.Genre,opt=>
+                opt.MapFrom(src=>Enum.Parse<Genre>(src.Genre,true)));
+            
+            CreateMap<Movie, MovieReadDTO>()
+                .ForMember(dest=>dest.Genre,opt=>opt.MapFrom(src=>src.Genre.ToString()));
+            CreateMap<MovieUpdateDTO,Movie>()
+                .ForMember(dest=>dest.Genre,opt=>opt.MapFrom(src=>Enum.Parse<Genre>(src.Genre,true)));
+          
 
             CreateMap<Seat, SeatCreate>().ReverseMap();
             CreateMap<Seat, SeatRead>().ReverseMap();
