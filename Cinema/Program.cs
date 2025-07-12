@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using CinemaAPI.Data;
 using AutoMapper;
+using CinemaAPI.MiddleWire;
 using FluentValidation.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddControllers().AddFluentValidation(fv => { fv.RegisterValidat
 
 var app = builder.Build();
 
+app.UseMiddleware<HandlingErrors>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
