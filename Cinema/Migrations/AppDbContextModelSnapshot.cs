@@ -42,6 +42,10 @@ namespace CinemaAPI.Migrations
                     b.Property<int>("SeatID")
                         .HasColumnType("int");
 
+                    b.Property<string>("SeatNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 

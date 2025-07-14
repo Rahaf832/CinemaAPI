@@ -22,18 +22,25 @@ namespace CinemaAPI.MiddleWire
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
+                // نجمع كل رسائل الأخطاء المتداخلة
+                string GetFullExceptionMessage(Exception exception)
+                {
+                    if (exception.InnerException == null) return exception.Message;
+                    return exception.Message + " --> " + GetFullExceptionMessage(exception.InnerException);
+                }
+
                 var response = new
                 {
-                    message = "SomeThing Rwong , Please Try Again",
-                    error = ex.Message
+                    message = "Something Wrong, Please Try Again",
+                    error = GetFullExceptionMessage(ex)
                 };
 
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
                 var json = JsonSerializer.Serialize(response, options);
 
                 await context.Response.WriteAsync(json);
-
             }
+
         }
     }
 }
