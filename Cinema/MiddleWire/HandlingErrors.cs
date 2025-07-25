@@ -20,7 +20,12 @@ namespace CinemaAPI.MiddleWire
             catch (Exception ex)
             {
                 context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                int statusCode = (int)HttpStatusCode.InternalServerError;
+                if (ex is ArgumentException)
+                {
+                    statusCode = (int)HttpStatusCode.BadRequest;  // 400
+                }
+                context.Response.StatusCode = statusCode;
 
                 // نجمع كل رسائل الأخطاء المتداخلة
                 string GetFullExceptionMessage(Exception exception)
@@ -31,7 +36,7 @@ namespace CinemaAPI.MiddleWire
 
                 var response = new
                 {
-                    message = "Something Wrong, Please Try Again",
+                    message = ex.Message,
                     error = GetFullExceptionMessage(ex)
                 };
 

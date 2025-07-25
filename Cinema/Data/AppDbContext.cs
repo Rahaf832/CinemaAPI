@@ -18,6 +18,13 @@ namespace CinemaAPI.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Id = 1, Name = "Admin" }
+               
+            );
+
             //One User With many bookings
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Bookings)

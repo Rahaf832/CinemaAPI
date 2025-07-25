@@ -43,6 +43,17 @@ namespace CinemaAPI.DTO
 
             CreateMap<ShowTimeSeat, DetailsDTO>().ReverseMap();
 
+            CreateMap<RoleDTO, Role>().ReverseMap();
+            CreateMap<Role, RoleDTORead>()
+                .ForMember(dest => dest.GetUsers, opt => opt.MapFrom(src => src.Users));
+            CreateMap<RoleDTORead, Role>()
+                .ForMember(dest => dest.Users, opt => opt.Ignore());
+            CreateMap<RoleDTOUpdate, Role>().ReverseMap();
+
+            CreateMap<User,UserUpdateDto>().ReverseMap();
+            CreateMap<User, UserReadDTO>().ReverseMap();
+
+          
         }
 
     }

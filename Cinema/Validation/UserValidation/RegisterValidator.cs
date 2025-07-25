@@ -15,7 +15,7 @@ namespace CinemaAPI.Validation.UserValidation
                 .WithMessage("Email is required .")
                 .EmailAddress()
                 .WithMessage("Email is not correct .");
-            RuleFor(r => r.PasswordHash)
+            RuleFor(r => r.Password)
                 .NotEmpty()
                 .WithMessage("Password is required .");
              

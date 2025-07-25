@@ -113,6 +113,13 @@ namespace CinemaAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.Seat", b =>
