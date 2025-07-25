@@ -53,5 +53,6 @@ namespace CinemaAPI.Controllers
             return Ok("Seat Deleted Successfully .");
 
         }
+        //Test
     }
 }
